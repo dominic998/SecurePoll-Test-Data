@@ -76,3 +76,7 @@ optimise <- function(preferences, stages, seats) {
 preferences <- expand.grid(0:10, 0:15, 0:15, 0:5, 0:5)
 
 preferences <- optimise(preferences, 5, 3)
+
+## Here is how you could order the data, selecting first preference
+## distributions that are close to the top.
+head(subset(preferences[order(preferences$droopdiff, preferences$total, decreasing=c(FALSE, TRUE)),], droopdiff > 0), 10)
