@@ -60,5 +60,6 @@ $candidatesNames = array_slice($lines, $finalIndex + 1, $numCandidates);
 
 // Final line is the name of the election
 $electionName = array_slice($lines, -1)[0];
+$electionName = str_replace("\"", "", $electionName);
 
-file_put_contents(sprintf("%s.php", $electionName), print_r($votes, true));
+file_put_contents(sprintf("%s.php", $electionName), var_export($votes, true));

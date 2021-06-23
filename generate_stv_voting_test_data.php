@@ -83,4 +83,4 @@ $numSeats = 2;
 // ]
 $ballots = createBallots($candidates, $voteDistribution, $totalVotes);
 
-file_put_contents('33.php', print_r($ballots, true));
+file_put_contents('33.php', var_export($ballots, true));
