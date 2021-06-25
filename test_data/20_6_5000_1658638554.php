@@ -1,9 +1,8 @@
 <?php
 
 /**
- * Case: Tie for a win! All but one seat filled and two hopeful candidates who
- * have the same number of votes. In the end, both hopeful candidates reach the
- * quota and the tie has to be broken.
+ * Case: All but one seat filled and two hopeful candidates who have the same
+ * number of votes.
  * 
  * Counting votes for ElectionTitle using Meek STV.
  * 20 candidates running for 6 seats.
