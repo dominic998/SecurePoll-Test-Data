@@ -63,8 +63,7 @@ $candidates = [1, 2, 3, 4, 5];
 // Total number of votes for the election.
 $totalVotes = 100;
 
-// Number of votes for each candidate for each "rank". In the same order in
-// which the candidates are listed above.
+// Number of votes for each candidate for each rank/preference.
 // 
 // createBallots is not guaranteed to produce these exact distribution in the
 // final ballots. Some distributions might be impossible. There is also an
