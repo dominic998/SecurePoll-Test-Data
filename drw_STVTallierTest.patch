@@ -1,0 +1,1485 @@
+diff --git a/tests/phpunit/unit/STVTallierTest.php b/tests/phpunit/unit/STVTallierTest.php
+index d896ad0..7cd4e11 100644
+--- a/tests/phpunit/unit/STVTallierTest.php
++++ b/tests/phpunit/unit/STVTallierTest.php
+@@ -24,7 +24,7 @@ class STVTallierTest extends MediaWikiUnitTestCase {
+ 			$option->method( 'getId' )
+ 				->willReturn( $id );
+ 			return $option;
+-		}, [ 100, 101, 102 ] );
++		}, [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T" ] );
+ 		$question = $this->createMock( Question::class );
+ 		$question->method( 'getOptions' )->willReturn( $options );
+ 
+@@ -112,6 +112,1471 @@ class STVTallierTest extends MediaWikiUnitTestCase {
+ 		);
+ 	}
+ 
++    public static function dataTestFinishTally() {
++		return [
++            [
++                3,
++                ["A", "B", "C", "D", "E"],
++                // 5_3_100_830635898.php
++                array (
++                    'CDBA' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'D',
++                            3 => 'B',
++                            4 => 'A',
++                        ),
++                    ),
++                    'DBC' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'B',
++                            3 => 'C',
++                        ),
++                    ),
++                    'DA' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'A',
++                        ),
++                    ),
++                    'ECAB' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'C',
++                            3 => 'A',
++                            4 => 'B',
++                        ),
++                    ),
++                    'CAD' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'A',
++                            3 => 'D',
++                        ),
++                    ),
++                    'DE' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'E',
++                        ),
++                    ),
++                    'E' => 
++                    array (
++                        'count' => 19,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                        ),
++                    ),
++                    'B' => 
++                    array (
++                        'count' => 20,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                        ),
++                    ),
++                    'A' => 
++                    array (
++                        'count' => 20,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                        ),
++                    ),
++                    'C' => 
++                    array (
++                        'count' => 18,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                        ),
++                    ),
++                    'D' => 
++                    array (
++                        'count' => 17,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                        ),
++                    ),
++                ),
++                ["A", "B", "D"]
++            ],
++            [
++                3,
++                ["A", "B", "C", "D", "E", "F", "G"],
++                // 7_3_100.php
++                array (
++                    'A' => 
++                    array (
++                        'count' => 25,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                        ),
++                    ),
++                    'BA' => 
++                    array (
++                        'count' => 25,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                        ),
++                    ),
++                    'CD' => 
++                    array (
++                        'count' => 11,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'D',
++                        ),
++                    ),
++                    'DE' => 
++                    array (
++                        'count' => 10,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'E',
++                        ),
++                    ),
++                    'EF' => 
++                    array (
++                        'count' => 10,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'F',
++                        ),
++                    ),
++                    'FG' => 
++                    array (
++                        'count' => 10,
++                        'rank' => 
++                        array (
++                            1 => 'F',
++                            2 => 'G',
++                        ),
++                    ),
++                    'GC' => 
++                    array (
++                        'count' => 9,
++                        'rank' => 
++                        array (
++                            1 => 'G',
++                            2 => 'C',
++                        ),
++                    ),
++                ),
++                ["A", "B", "C"]
++            ],
++            [
++                5,
++                ["A", "B", "C", "D", "E", "F", "G"],
++                // 7_5_1000.php
++                array (
++                    'A' => 
++                    array (
++                        'count' => 166,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                        ),
++                    ),
++                    'BA' => 
++                    array (
++                        'count' => 84,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                        ),
++                    ),
++                    'BC' => 
++                    array (
++                        'count' => 84,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'C',
++                        ),
++                    ),
++                    'CD' => 
++                    array (
++                        'count' => 133,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'D',
++                        ),
++                    ),
++                    'DE' => 
++                    array (
++                        'count' => 133,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'E',
++                        ),
++                    ),
++                    'EF' => 
++                    array (
++                        'count' => 133,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'F',
++                        ),
++                    ),
++                    'FG' => 
++                    array (
++                        'count' => 133,
++                        'rank' => 
++                        array (
++                            1 => 'F',
++                            2 => 'G',
++                        ),
++                    ),
++                    'GD' => 
++                    array (
++                        'count' => 134,
++                        'rank' => 
++                        array (
++                            1 => 'G',
++                            2 => 'D',
++                        ),
++                    ),
++                ),
++                ["A", "B", "E", "F", "G"] // Actual outcome depends on how ties are resolved
++            ],
++            [
++                3,
++                ["A", "B", "C", "D", "E", "F", "G"],
++                // 7_3_100_2.php
++                array (
++                    'A' => 
++                    array (
++                        'count' => 24,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                        ),
++                    ),
++                    'B' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                        ),
++                    ),
++                    'BA' => 
++                    array (
++                        'count' => 25,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                        ),
++                    ),
++                    'CD' => 
++                    array (
++                        'count' => 11,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'D',
++                        ),
++                    ),
++                    'DE' => 
++                    array (
++                        'count' => 10,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'E',
++                        ),
++                    ),
++                    'EF' => 
++                    array (
++                        'count' => 10,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'F',
++                        ),
++                    ),
++                    'FG' => 
++                    array (
++                        'count' => 10,
++                        'rank' => 
++                        array (
++                            1 => 'F',
++                            2 => 'G',
++                        ),
++                    ),
++                    'GC' => 
++                    array (
++                        'count' => 9,
++                        'rank' => 
++                        array (
++                            1 => 'G',
++                            2 => 'C',
++                        ),
++                    ),
++                ),
++                ["A", "B", "C"]
++            ],
++            [
++                2,
++                ["A", "B", "C", "D", "E"],
++                // 5_2_72.php
++                array (
++                    'A' => 
++                    array (
++                        'count' => 10,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                        ),
++                    ),
++                    'BA' => 
++                    array (
++                        'count' => 38,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                        ),
++                    ),
++                    'C' => 
++                    array (
++                        'count' => 9,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                        ),
++                    ),
++                    'D' => 
++                    array (
++                        'count' => 7,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                        ),
++                    ),
++                    'E' => 
++                    array (
++                        'count' => 8,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                        ),
++                    ),
++                ),
++                ["A", "B"]
++            ],
++            [
++                3,
++                ["A", "B", "C", "D", "E"],
++                // 5_3_41.php
++                array (
++                    'A' => 
++                    array (
++                        'count' => 10,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                        ),
++                    ),
++                    'BA' => 
++                    array (
++                        'count' => 10,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                        ),
++                    ),
++                    'C' => 
++                    array (
++                        'count' => 11,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                        ),
++                    ),
++                    'D' => 
++                    array (
++                        'count' => 5,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                        ),
++                    ),
++                    'E' => 
++                    array (
++                        'count' => 5,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                        ),
++                    ),
++                ),
++                ["A", "B", "C"]
++            ],
++            [
++                3,
++                ["A", "B", "C", "D", "E"],
++                // 5_3_2679.php
++                array (
++                    'A' => 
++                    array (
++                        'count' => 509,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                        ),
++                    ),
++                    'BA' => 
++                    array (
++                        'count' => 670,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                        ),
++                    ),
++                    'C' => 
++                    array (
++                        'count' => 500,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                        ),
++                    ),
++                    'D' => 
++                    array (
++                        'count' => 500,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                        ),
++                    ),
++                    'E' => 
++                    array (
++                        'count' => 500,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                        ),
++                    ),
++                ),
++                ["A", "B", "D"]
++            ],
++            [
++                3,
++                ["A", "B", "C", "D", "E"],
++                // 5_3_2065.php
++                array (
++                    'A' => 
++                    array (
++                        'count' => 515,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                        ),
++                    ),
++                    'BA' => 
++                    array (
++                        'count' => 510,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                        ),
++                    ),
++                    'C' => 
++                    array (
++                        'count' => 520,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                        ),
++                    ),
++                    'D' => 
++                    array (
++                        'count' => 260,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                        ),
++                    ),
++                    'E' => 
++                    array (
++                        'count' => 260,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                        ),
++                    ),
++                ),
++                ["A", "B", "C"]
++            ],
++            [
++                3,
++                ["A", "B", "C", "D", "E"],
++                // 5_3_100_1806855717.php
++                array (
++                    'ADCB' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'D',
++                            3 => 'C',
++                            4 => 'B',
++                        ),
++                    ),
++                    'DEACB' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'E',
++                            3 => 'A',
++                            4 => 'C',
++                            5 => 'B',
++                        ),
++                    ),
++                    'BCDA' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'C',
++                            3 => 'D',
++                            4 => 'A',
++                        ),
++                    ),
++                    'BA' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                        ),
++                    ),
++                    'EAB' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'A',
++                            3 => 'B',
++                        ),
++                    ),
++                    'EB' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'B',
++                        ),
++                    ),
++                    'E' => 
++                    array (
++                        'count' => 18,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                        ),
++                    ),
++                    'D' => 
++                    array (
++                        'count' => 19,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                        ),
++                    ),
++                    'B' => 
++                    array (
++                        'count' => 18,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                        ),
++                    ),
++                    'C' => 
++                    array (
++                        'count' => 20,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                        ),
++                    ),
++                    'A' => 
++                    array (
++                        'count' => 19,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                        ),
++                    ),
++                ),
++                ["A", "C", "D"]
++            ],
++            [
++                3,
++                ["A", "B", "C", "D", "E"],
++                // 5_3_100.php
++                array (
++                    'EBA' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'B',
++                            3 => 'A',
++                        ),
++                    ),
++                    'CB' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'B',
++                        ),
++                    ),
++                    'BA' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                        ),
++                    ),
++                    'EB' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'B',
++                        ),
++                    ),
++                    'DAB' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'A',
++                            3 => 'B',
++                        ),
++                    ),
++                    'DB' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'B',
++                        ),
++                    ),
++                    'EA' => 
++                    array (
++                        'count' => 1,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'A',
++                        ),
++                    ),
++                    'DA' => 
++                    array (
++                        'count' => 2,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'A',
++                        ),
++                    ),
++                    'C' => 
++                    array (
++                        'count' => 19,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                        ),
++                    ),
++                    'A' => 
++                    array (
++                        'count' => 20,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                        ),
++                    ),
++                    'E' => 
++                    array (
++                        'count' => 17,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                        ),
++                    ),
++                    'B' => 
++                    array (
++                        'count' => 19,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                        ),
++                    ),
++                    'D' => 
++                    array (
++                        'count' => 16,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                        ),
++                    ),
++                ),
++                ["A", "B", "E"]
++            ],
++            [
++                1,
++                ["A", "B"],
++                // 2_100.php
++                array (
++                    'BA' => 
++                    array (
++                        'count' => 50,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                        ),
++                    ),
++                    'AB' => 
++                    array (
++                        'count' => 50,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'B',
++                        ),
++                    ),
++                ),
++                ["A"]
++            ],
++            [
++                1,
++                ["A", "B", "C", "D", "E"],
++                // 5000.php
++                array (
++                    'CBA' => 
++                    array (
++                        'count' => 75,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'B',
++                            3 => 'A',
++                        ),
++                    ),
++                    'AEC' => 
++                    array (
++                        'count' => 85,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'E',
++                            3 => 'C',
++                        ),
++                    ),
++                    'BDE' => 
++                    array (
++                        'count' => 83,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'D',
++                            3 => 'E',
++                        ),
++                    ),
++                    'DCA' => 
++                    array (
++                        'count' => 86,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'C',
++                            3 => 'A',
++                        ),
++                    ),
++                    'ECD' => 
++                    array (
++                        'count' => 88,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'C',
++                            3 => 'D',
++                        ),
++                    ),
++                    'EBC' => 
++                    array (
++                        'count' => 75,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'B',
++                            3 => 'C',
++                        ),
++                    ),
++                    'EBA' => 
++                    array (
++                        'count' => 95,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'B',
++                            3 => 'A',
++                        ),
++                    ),
++                    'DAE' => 
++                    array (
++                        'count' => 79,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'A',
++                            3 => 'E',
++                        ),
++                    ),
++                    'BDA' => 
++                    array (
++                        'count' => 90,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'D',
++                            3 => 'A',
++                        ),
++                    ),
++                    'CEB' => 
++                    array (
++                        'count' => 66,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'E',
++                            3 => 'B',
++                        ),
++                    ),
++                    'CEA' => 
++                    array (
++                        'count' => 97,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'E',
++                            3 => 'A',
++                        ),
++                    ),
++                    'BEC' => 
++                    array (
++                        'count' => 87,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'E',
++                            3 => 'C',
++                        ),
++                    ),
++                    'EBD' => 
++                    array (
++                        'count' => 100,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'B',
++                            3 => 'D',
++                        ),
++                    ),
++                    'DCE' => 
++                    array (
++                        'count' => 83,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'C',
++                            3 => 'E',
++                        ),
++                    ),
++                    'ACD' => 
++                    array (
++                        'count' => 85,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'C',
++                            3 => 'D',
++                        ),
++                    ),
++                    'CDA' => 
++                    array (
++                        'count' => 80,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'D',
++                            3 => 'A',
++                        ),
++                    ),
++                    'ABE' => 
++                    array (
++                        'count' => 87,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'B',
++                            3 => 'E',
++                        ),
++                    ),
++                    'ABD' => 
++                    array (
++                        'count' => 85,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'B',
++                            3 => 'D',
++                        ),
++                    ),
++                    'ADC' => 
++                    array (
++                        'count' => 71,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'D',
++                            3 => 'C',
++                        ),
++                    ),
++                    'ECB' => 
++                    array (
++                        'count' => 84,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'C',
++                            3 => 'B',
++                        ),
++                    ),
++                    'CAD' => 
++                    array (
++                        'count' => 90,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'A',
++                            3 => 'D',
++                        ),
++                    ),
++                    'BED' => 
++                    array (
++                        'count' => 86,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'E',
++                            3 => 'D',
++                        ),
++                    ),
++                    'EAB' => 
++                    array (
++                        'count' => 72,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'A',
++                            3 => 'B',
++                        ),
++                    ),
++                    'DEA' => 
++                    array (
++                        'count' => 79,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'E',
++                            3 => 'A',
++                        ),
++                    ),
++                    'ABC' => 
++                    array (
++                        'count' => 72,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'B',
++                            3 => 'C',
++                        ),
++                    ),
++                    'BAE' => 
++                    array (
++                        'count' => 86,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                            3 => 'E',
++                        ),
++                    ),
++                    'BCE' => 
++                    array (
++                        'count' => 71,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'C',
++                            3 => 'E',
++                        ),
++                    ),
++                    'ECA' => 
++                    array (
++                        'count' => 78,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'C',
++                            3 => 'A',
++                        ),
++                    ),
++                    'DCB' => 
++                    array (
++                        'count' => 75,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'C',
++                            3 => 'B',
++                        ),
++                    ),
++                    'AED' => 
++                    array (
++                        'count' => 93,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'E',
++                            3 => 'D',
++                        ),
++                    ),
++                    'DEC' => 
++                    array (
++                        'count' => 79,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'E',
++                            3 => 'C',
++                        ),
++                    ),
++                    'DBA' => 
++                    array (
++                        'count' => 80,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'B',
++                            3 => 'A',
++                        ),
++                    ),
++                    'DBE' => 
++                    array (
++                        'count' => 85,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'B',
++                            3 => 'E',
++                        ),
++                    ),
++                    'EAD' => 
++                    array (
++                        'count' => 68,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'A',
++                            3 => 'D',
++                        ),
++                    ),
++                    'BAC' => 
++                    array (
++                        'count' => 88,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                            3 => 'C',
++                        ),
++                    ),
++                    'CDB' => 
++                    array (
++                        'count' => 84,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'D',
++                            3 => 'B',
++                        ),
++                    ),
++                    'CDE' => 
++                    array (
++                        'count' => 85,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'D',
++                            3 => 'E',
++                        ),
++                    ),
++                    'DEB' => 
++                    array (
++                        'count' => 109,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'E',
++                            3 => 'B',
++                        ),
++                    ),
++                    'CAE' => 
++                    array (
++                        'count' => 88,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'A',
++                            3 => 'E',
++                        ),
++                    ),
++                    'CED' => 
++                    array (
++                        'count' => 71,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'E',
++                            3 => 'D',
++                        ),
++                    ),
++                    'EDA' => 
++                    array (
++                        'count' => 79,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'D',
++                            3 => 'A',
++                        ),
++                    ),
++                    'EDC' => 
++                    array (
++                        'count' => 102,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'D',
++                            3 => 'C',
++                        ),
++                    ),
++                    'ADE' => 
++                    array (
++                        'count' => 75,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'D',
++                            3 => 'E',
++                        ),
++                    ),
++                    'AEB' => 
++                    array (
++                        'count' => 75,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'E',
++                            3 => 'B',
++                        ),
++                    ),
++                    'CAB' => 
++                    array (
++                        'count' => 96,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'A',
++                            3 => 'B',
++                        ),
++                    ),
++                    'CBD' => 
++                    array (
++                        'count' => 77,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'B',
++                            3 => 'D',
++                        ),
++                    ),
++                    'CBE' => 
++                    array (
++                        'count' => 91,
++                        'rank' => 
++                        array (
++                            1 => 'C',
++                            2 => 'B',
++                            3 => 'E',
++                        ),
++                    ),
++                    'DAC' => 
++                    array (
++                        'count' => 82,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'A',
++                            3 => 'C',
++                        ),
++                    ),
++                    'ACB' => 
++                    array (
++                        'count' => 94,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'C',
++                            3 => 'B',
++                        ),
++                    ),
++                    'BCA' => 
++                    array (
++                        'count' => 88,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'C',
++                            3 => 'A',
++                        ),
++                    ),
++                    'DAB' => 
++                    array (
++                        'count' => 85,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'A',
++                            3 => 'B',
++                        ),
++                    ),
++                    'ADB' => 
++                    array (
++                        'count' => 91,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'D',
++                            3 => 'B',
++                        ),
++                    ),
++                    'EAC' => 
++                    array (
++                        'count' => 90,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'A',
++                            3 => 'C',
++                        ),
++                    ),
++                    'DBC' => 
++                    array (
++                        'count' => 78,
++                        'rank' => 
++                        array (
++                            1 => 'D',
++                            2 => 'B',
++                            3 => 'C',
++                        ),
++                    ),
++                    'BDC' => 
++                    array (
++                        'count' => 91,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'D',
++                            3 => 'C',
++                        ),
++                    ),
++                    'ACE' => 
++                    array (
++                        'count' => 87,
++                        'rank' => 
++                        array (
++                            1 => 'A',
++                            2 => 'C',
++                            3 => 'E',
++                        ),
++                    ),
++                    'BCD' => 
++                    array (
++                        'count' => 81,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'C',
++                            3 => 'D',
++                        ),
++                    ),
++                    'BAD' => 
++                    array (
++                        'count' => 76,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'A',
++                            3 => 'D',
++                        ),
++                    ),
++                    'EDB' => 
++                    array (
++                        'count' => 69,
++                        'rank' => 
++                        array (
++                            1 => 'E',
++                            2 => 'D',
++                            3 => 'B',
++                        ),
++                    ),
++                    'BEA' => 
++                    array (
++                        'count' => 73,
++                        'rank' => 
++                        array (
++                            1 => 'B',
++                            2 => 'E',
++                            3 => 'A',
++                        ),
++                    ),
++                ),
++                ["D"]
++            ],
++            // This seems to cause it the test to hang, I assume because of infinite recursion?
++            // [
++            //     6,
++            //     ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"],
++            //     // 20_6_5000_299623400.php
++            //     array (
++            //         'A' => 
++            //         array (
++            //             'count' => 1000,
++            //             'rank' => 
++            //             array (
++            //                 1 => 'A',
++            //             ),
++            //         ),
++            //         'E' => 
++            //         array (
++            //             'count' => 1000,
++            //             'rank' => 
++            //             array (
++            //                 1 => 'E',
++            //             ),
++            //         ),
++            //         'B' => 
++            //         array (
++            //             'count' => 1000,
++            //             'rank' => 
++            //             array (
++            //                 1 => 'B',
++            //             ),
++            //         ),
++            //         'D' => 
++            //         array (
++            //             'count' => 1000,
++            //             'rank' => 
++            //             array (
++            //                 1 => 'D',
++            //             ),
++            //         ),
++            //         'C' => 
++            //         array (
++            //             'count' => 1000,
++            //             'rank' => 
++            //             array (
++            //                 1 => 'C',
++            //             ),
++            //         ),
++            //     ),
++            //     ["A", "B", "C", "D", "E"]
++            // ]
++        ];
++    }
++
++    /**
++     * @dataProvider dataTestFinishTally
++	 * @covers \MediaWiki\Extensions\SecurePoll\Talliers\STVTallier::finishTally
++	 */
++	public function testFinishTally( $seats, $candidates, $ballots, $expectedElected ) {
++        $this->tallier->seats = $seats;
++        $this->tallier->candidates = $candidates;
++        $this->tallier->rankedVotes = $ballots;
++		$this->tallier->finishTally();
++        sort( $expectedElected );
++        sort( $this->tallier->resultsLog['elected'] );
++        $this->assertEquals( $expectedElected, $this->tallier->resultsLog['elected'] );
++	}
++
+ 	/**
+ 	 * @covers \MediaWiki\Extensions\SecurePoll\Talliers\STVTallier::calculateDroopQuota
+ 	 */
