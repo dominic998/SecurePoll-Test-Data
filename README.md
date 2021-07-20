@@ -3,10 +3,24 @@ Generating test data
 
 The two scripts `generate_stv_voting_test_data.php` will `generate_stv_voting_test_data_1.php` generate a test election in the OpenSTV/OpaVote .blt format.
 
+How to generate test data
+-------------------------
+
+1. Clone this repository (`git clone https://github.com/dominic998/SecurePoll-Test-Data.git`) and change to the directory you cloned (e.g. `cd SecurePoll-Test-Data`)
+2. Run: `docker build -t openstv .`
+3. Make desired changes to `generate_stv_voting_test_data.php` or `generate_stv_voting_test_data_1.php` (see below)
+4. Run: `docker run -v "$PWD:/var/www/html/w" openstv php generate_stv_voting_test_data.php` or `docker run -v "$PWD:/var/www/html/w" openstv php generate_stv_voting_test_data_1.php`
+
+This should generate a file in the current directory, ending in `blt`. For example, `3_2_99_1308473267.blt`.
+
+You can run the test data file you just generated against OpenSTV, to check what the "correct" outcome should be:
+`docker run -v "$PWD:/var/www/html/w" openstv openstv-run-election MeekSTV <filename>.blt`
+
+How to modify the test data you generate
+----------------------------------------
+
 You will probably want to modify some of the variables in those scripts to generate different test data.
 
-Variables
----------
 `$candidates`: an array of candidate names, I suggest just using numbers, e.g. `[1, 2, 3, 4, 5, ...]`
 `$numSeats`: number of seats the candidates are competing for
 `$totalVotes`: total number of votes to simulate in the election
@@ -53,17 +67,6 @@ Variables
   ],
   ...
   ```
-
-1. Clone this repository (`git clone https://github.com/dominic998/SecurePoll-Test-Data.git`) and change to the directory you cloned (e.g. `cd SecurePoll-Test-Data`)
-2. Run: `docker build -t openstv .`
-3. Make desired changes to `generate_stv_voting_test_data.php` or `generate_stv_voting_test_data_1.php` (see above)
-4. Run: `docker run -v "$PWD:/var/www/html/w" openstv php generate_stv_voting_test_data.php` or `docker run -v "$PWD:/var/www/html/w" openstv php generate_stv_voting_test_data_1.php`
-
-This should generate a file in the current directory, ending in `blt`. For example, `3_2_99_1308473267.blt`.
-
-You can run the test data file you just generated against OpenSTV, to check what the "correct" outcome should be:
-`docker run -v "$PWD:/var/www/html/w" openstv openstv-run-election MeekSTV <filename>.blt`
-
 
 Unit testing
 ============
