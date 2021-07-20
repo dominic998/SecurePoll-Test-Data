@@ -54,12 +54,12 @@ $rankedVotes = [];
 foreach ( $ballots as $vote ) {
     $blah = [];
     foreach ( $vote as $index => $candidate ) {
-        $blah[$index + 1] = $map[$candidate];
+        $blah[$index + 1] = $candidate;
     }
     if ( isset( $rankedVotes[implode("", $blah)] ) ) {
-        $rankedVotes[implode("", $blah)]['count'] = $rankedVotes[implode("", $blah)]['count'] + 1;
+        $rankedVotes[implode("_", $blah)]['count'] = $rankedVotes[implode("_", $blah)]['count'] + 1;
     } else {
-        $rankedVotes[implode("", $blah)] = [
+        $rankedVotes[implode("_", $blah)] = [
             'count' => 1,
             'rank' => $blah
         ];
