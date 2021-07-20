@@ -109,7 +109,7 @@ $ballots = createBallots($candidates, $voteDistribution, $totalVotes);
 
 $random = rand();
 
-file_put_contents(sprintf("%d_%d_%d_%d.php", count($candidates), $numSeats, $totalVotes, $random), var_export($ballots, true));
+// file_put_contents(sprintf("%d_%d_%d_%d.php", count($candidates), $numSeats, $totalVotes, $random), var_export($ballots, true));
 
 $filename = sprintf("%d_%d_%d_%d.blt", count($candidates), $numSeats, $totalVotes, $random);
 
