@@ -83,4 +83,22 @@ $numSeats = 2;
 // ]
 $ballots = createBallots($candidates, $voteDistribution, $totalVotes);
 
-file_put_contents('33.php', var_export($ballots, true));
+$random = rand();
+
+file_put_contents(sprintf("%d_%d_%d_%d.php", count($candidates), $numSeats, $totalVotes, $random), var_export($ballots, true));
+
+$filename = sprintf("%d_%d_%d_%d.blt", count($candidates), $numSeats, $totalVotes, $random);
+
+file_put_contents($filename, sprintf("%d %d\n", count($candidates), $numSeats));
+
+foreach ( $ballots as $ballot ) {
+    file_put_contents($filename, sprintf("1 %s 0\n", implode(" ", $ballot)), FILE_APPEND);
+}
+
+file_put_contents($filename, "0\n", FILE_APPEND);
+
+foreach ( $candidates as $candidate ) {
+    file_put_contents($filename, sprintf("\"%s\"\n", $candidate), FILE_APPEND);
+}
+
+file_put_contents($filename, "\"ElectionTitle\"\n", FILE_APPEND);
