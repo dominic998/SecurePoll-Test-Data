@@ -56,7 +56,7 @@ foreach ( $ballots as $vote ) {
     foreach ( $vote as $index => $candidate ) {
         $blah[$index + 1] = $candidate;
     }
-    if ( isset( $rankedVotes[implode("", $blah)] ) ) {
+    if ( isset( $rankedVotes[implode("_", $blah)] ) ) {
         $rankedVotes[implode("_", $blah)]['count'] = $rankedVotes[implode("_", $blah)]['count'] + 1;
     } else {
         $rankedVotes[implode("_", $blah)] = [
