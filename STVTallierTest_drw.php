@@ -33,23 +33,6 @@ use RequestContext;
 class STVTallierTest extends MediaWikiUnitTestCase {
 	protected function setUp(): void {
 		parent::setUp();
-
-		// Tallier constructor requires getOptions to return iterable
-		$options = array_map( function ( $id ) {
-			$option = $this->createMock( Option::class );
-			$option->method( 'getId' )
-				->willReturn( $id );
-			return $option;
-		}, [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ] );
-		$question = $this->createMock( Question::class );
-		$question->method( 'getOptions' )->willReturn( $options );
-
-		$this->tallier = Tallier::factory(
-			$this->createMock( RequestContext::class ),
-			'droop-quota',
-			$this->createMock( ElectionTallier::class ),
-			$question
-		);
 	}
 
     /**
@@ -58,8 +41,10 @@ class STVTallierTest extends MediaWikiUnitTestCase {
 	public function testFinishTally() {
         $ballots = file_get_contents(getenv('FILE'));
         $lines = explode("\n", $ballots);
+
         // First line gives us number of candidates and seats
         [$numCandidates, $numSeats] = explode(" ", array_shift($lines));
+
         // The next lines are the actual votes
         $votes = [];
         foreach ( $lines as $index => $line ) {
@@ -76,21 +61,9 @@ class STVTallierTest extends MediaWikiUnitTestCase {
             array_shift($vote);
             array_pop($vote);
 
-            $blah = [];
-            foreach ( $vote as $index => $candidate ) {
-                $blah[$index + 1] = $candidate;
-            }
-            $vote = $blah;
-
-            if ( isset( $votes[implode("_", $vote)] ) ) {
-                $votes[implode("_", $vote)]['count'] = $votes[implode("_", $vote)]['count'] + 1;
-            } else {
-                $votes[implode("_", $vote)] = [
-                    'count' => 1,
-                    'rank' => $vote
-                ];
-            }
+            $votes[] = $vote;
         }
+
         // Next lines are candidate names
         $candidatesNames = array_slice($lines, $finalIndex + 1, $numCandidates);
         $cand = [];
@@ -98,17 +71,39 @@ class STVTallierTest extends MediaWikiUnitTestCase {
             $cand[$index + 1] = $name;
         }
         $candidatesNames = $cand;
+
         // Final line is the name of the election
         $electionName = array_slice($lines, -1)[0];
         $electionName = str_replace("\"", "", $electionName);
 
-        $this->tallier->seats = (int)$numSeats;
-        $this->tallier->candidates = $candidatesNames;
-        $this->tallier->rankedVotes = $votes;
+        // Tallier constructor requires getOptions to return iterable
+        // This allows us to set the candidates
+		$options = array_map( function ( $id ) {
+			$option = $this->createMock( Option::class );
+			$option->method( 'getId' )
+				->willReturn( $id );
+			return $option;
+		}, array_keys( $candidatesNames ) );
+		$question = $this->createMock( Question::class );
+		$question->method( 'getOptions' )->willReturn( $options );
+
+        // Set the number of seats
+        $question->method( 'getProperty' )->willReturn( (int)$numSeats );
+
+		$this->tallier = Tallier::factory(
+			$this->createMock( RequestContext::class ),
+			'droop-quota',
+			$this->createMock( ElectionTallier::class ),
+			$question
+		);
+
+        foreach ( $votes as $vote ) {
+            $this->tallier->addVote( $vote );
+        }
 
 		$this->tallier->finishTally();
-        sort( $this->tallier->resultsLog['elected'] );
-        var_dump( $this->tallier->resultsLog['elected'] );
+        // sort( $this->tallier->resultsLog['elected'] );
+        var_dump( $this->tallier->resultsLog );
         // $this->assertEquals( $expectedElected, $this->tallier->resultsLog['elected'] );
 	}
 }
