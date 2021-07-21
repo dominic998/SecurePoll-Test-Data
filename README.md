@@ -21,10 +21,10 @@ How to modify the test data you generate
 
 You will probably want to modify some of the variables in those scripts to generate different test data.
 
-`$candidates`: an array of candidate names, I suggest just using numbers, e.g. `[1, 2, 3, 4, 5, ...]`
-`$numSeats`: number of seats the candidates are competing for
-`$totalVotes`: total number of votes to simulate in the election
-`$voteDistribution`: This is different depending on which script you are using:
+* `$candidates`: an array of candidate names, I suggest just using numbers, e.g. `[1, 2, 3, 4, 5, ...]`
+* `$numSeats`: number of seats the candidates are competing for
+* `$totalVotes`: total number of votes to simulate in the election
+* `$voteDistribution`: This is different depending on which script you are using:
  * For `generate_stv_voting_test_data.php` this is an array of arrays. The first array is the number of people who have voted for each candidate as their first choice. The second array is the number of people who have voted for each candidate as their second choice. And so on. For example:
  ```
  $voteDistribution = [
@@ -75,5 +75,6 @@ You can run OpenSTV/OpaVote .blt files (like the ones you generated above) as un
 
 1. Copy `unit_test_stv.sh` to your MediaWiki core repository
 2. Copy any .blt files (like the test data files you just generated) to your MediaWiki core repository
-3. In your MediaWiki core repository, start your MediaWiki docker container (e.g. `docker-compose up -d`)
-4. Run: `docker-compose exec mediawiki bash unit_test_stv.sh -f <filename>.blt`
+3. Copy `STVTallierTest_drw.php` to `extensions/SecurePoll/tests/phpunit/unit/` in the MediaWiki core repository
+4. In your MediaWiki core repository, start your MediaWiki docker container (e.g. `docker-compose up -d`)
+5. Run: `docker-compose exec mediawiki bash unit_test_stv.sh -f <filename>.blt`
