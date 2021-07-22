@@ -120,5 +120,5 @@ Running them via UI
 2. In your MediaWiki core repository, start your MediaWiki docker container (e.g. `docker-compose up -d`)
 3. Run: `docker-compose exec mediawiki php extensions/SecurePoll/cli/generateTestElection.php --election=stv --ballots=<filename>.blt --name=<election name>`
 4. Go to http://localhost:8080/wiki/Special:SecurePoll
-5. On the election called `<election name>` (whatever you called it in step 2) click "Tally"
+5. On the election called `<election name>` (whatever you called it in step 3) click "Tally"
 
