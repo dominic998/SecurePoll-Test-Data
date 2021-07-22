@@ -76,7 +76,7 @@ You will probably want to modify some of the variables in those scripts to gener
             3 => 30, // 30 voters put candidate 3 as their first preference
   	    ...
         ],
-	2 => [   // Second preferences
+        2 => [   // Second preferences
             1 => [   // Candidate 1
                 2 => 6, // Of the people who voted candidate 1 as their first choice, 6 put candidate 2 as their second choice
                 3 => 7, // Of the people who voted candidate 1 as their first choice, 7 put candidate 3 as their second choice
