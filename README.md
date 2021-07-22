@@ -44,7 +44,7 @@ You will probably want to modify some of the variables in those scripts to gener
     ```
     The second (and subsequent) arrays need themselves to be an array of arrays. The first array is the number of people who, having put candidate 1 as their first choice, voted for each candidate as their second (or subsequent) choice. It needs to be an associative array where the keys are the names of the candidates. For example:
     ```
-     2 => [   // Second preferences
+    2 => [   // Second preferences
         1 => [   // Candidate 1
             2 => 6, // Of the people who voted candidate 1 as their first choice, 6 put candidate 2 as their second choice
             3 => 7, // Of the people who voted candidate 1 as their first choice, 7 put candidate 3 as their second choice
@@ -66,6 +66,38 @@ You will probably want to modify some of the variables in those scripts to gener
         ...
     ],
     ...
+    ```
+    So, putting it all together, we end up with:
+    ```
+    $voteDistribution = [
+        1 => [ // First preferences
+            1 => 10, // 10 voters put candidate 1 as their first preference
+            2 => 20, // 20 voters put candidate 2 as their first preference
+            3 => 30, // 30 voters put candidate 3 as their first preference
+  	    ...
+        ],
+	2 => [   // Second preferences
+            1 => [   // Candidate 1
+                2 => 6, // Of the people who voted candidate 1 as their first choice, 6 put candidate 2 as their second choice
+                3 => 7, // Of the people who voted candidate 1 as their first choice, 7 put candidate 3 as their second choice
+      	        ...
+            ],
+            2 => [   // Candidate 2
+                1 => 2, // Of the people who voted candidate 2 as their first choice, 2 put candidate 1 as their second choice
+                3 => 4, // Of the people who voted candidate 2 as their first choice, 4 put candidate 3 as their second choice
+      	        ...
+            ],
+            ...
+        ],
+        3 => [   // Third preferences
+            1 => [   // Candidate 1
+                2 => 4, // Of the people who voted candidate 1 as their first choice, 4 put candidate 2 as their third choice
+                3 => 5, // Of the people who voted candidate 1 as their first choice, 5 put candidate 3 as their third choice
+      	        ...
+            ],
+            ...
+        ],
+    ];
     ```
 
 Unit testing
