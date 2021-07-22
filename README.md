@@ -111,3 +111,14 @@ You can run OpenSTV/OpaVote .blt files (like the ones you generated above) as un
 3. Copy `STVTallierTest_drw.php` to `extensions/SecurePoll/tests/phpunit/unit/` in the MediaWiki core repository
 4. In your MediaWiki core repository, start your MediaWiki docker container (e.g. `docker-compose up -d`)
 5. Run: `docker-compose exec mediawiki bash unit_test_stv.sh -f <filename>.blt`
+
+
+Running them via UI
+===================
+
+1. Copy any .blt files (like the test data files you just generated) to your MediaWiki core repository
+2. In your MediaWiki core repository, start your MediaWiki docker container (e.g. `docker-compose up -d`)
+3. Run: `docker-compose exec mediawiki php extensions/SecurePoll/cli/generateTestElection.php --election=stv --ballots=<filename>.blt --name=<election name>`
+4. Go to http://localhost:8080/wiki/Special:SecurePoll
+5. On the election called "<election name>" (whatever you called it in step 2) click "Tally"
+
