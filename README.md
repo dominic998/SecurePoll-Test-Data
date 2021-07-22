@@ -25,7 +25,7 @@ You will probably want to modify some of the variables in those scripts to gener
 * `$numSeats`: number of seats the candidates are competing for
 * `$totalVotes`: total number of votes to simulate in the election
 * `$voteDistribution`: This is different depending on which script you are using:
- * For `generate_stv_voting_test_data.php` this is an array of arrays. The first array is the number of people who have voted for each candidate as their first choice. The second array is the number of people who have voted for each candidate as their second choice. And so on. For example:
+..* For `generate_stv_voting_test_data.php` this is an array of arrays. The first array is the number of people who have voted for each candidate as their first choice. The second array is the number of people who have voted for each candidate as their second choice. And so on. For example:
  ```
  $voteDistribution = [
     [10, 20, 30], // 10 voters put candidate 1 as their first preference, 20 put candidate 2 as their first preference, and 30 put candidate 3 as their first preference
@@ -33,7 +33,7 @@ You will probably want to modify some of the variables in those scripts to gener
     ...
  ];
  ```
-  * For `generate_stv_voting_test_data_1.php` is an array of arrays. The first array is the number of people who have voted for each candidate as their first choice. But, the format needs to be an associative array where the keys are the names of the candidates, for example:
+..* For `generate_stv_voting_test_data_1.php` is an array of arrays. The first array is the number of people who have voted for each candidate as their first choice. But, the format needs to be an associative array where the keys are the names of the candidates, for example:
   ```
   1 => [ // First preferences
         1 => 10, // 10 voters put candidate 1 as their first preference
