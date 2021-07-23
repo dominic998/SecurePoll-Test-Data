@@ -62,7 +62,7 @@ class STVTallierTest extends MediaWikiUnitTestCase {
             // of the syntax of OpenSTV.
             array_pop($vote);
 
-            if ( $vote[0] != "" ) {
+            if ( $vote && $vote[0] != "" ) {
                 foreach ( range( 1, $num ) as $i ) {
                     $votes[] = $vote;
                 }
