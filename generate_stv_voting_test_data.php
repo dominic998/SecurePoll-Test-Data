@@ -43,7 +43,10 @@ function createBallots( $candidates, $voteDistribution, $totalVotes ) {
             // been ranked.
             $voteDistribution[$j][$index] = $voteDistribution[$j][$index] - 1;
         }
-        $votes[] = $vote;
+        // Only add actual, valid votes
+        if ( count( $vote ) > 0 ) {
+            $votes[] = $vote;
+        }
     }
     return $votes;
 }
