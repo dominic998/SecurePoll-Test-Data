@@ -61,7 +61,9 @@ class STVTallierTest extends MediaWikiUnitTestCase {
             array_shift($vote);
             array_pop($vote);
 
-            $votes[] = $vote;
+            if ( $vote[0] != "" ) {
+                $votes[] = $vote;
+            }
         }
 
         // Next lines are candidate names
