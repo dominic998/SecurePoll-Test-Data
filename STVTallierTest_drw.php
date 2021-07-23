@@ -104,6 +104,9 @@ class STVTallierTest extends MediaWikiUnitTestCase {
 		$this->tallier->finishTally();
         // sort( $this->tallier->resultsLog['elected'] );
         var_dump( $this->tallier->resultsLog );
+        foreach ( $this->tallier->resultsLog['elected'] as $candidateId ) {
+            var_dump( "Elected: " . $candidatesNames[$candidateId] );
+        }
         // $this->assertEquals( $expectedElected, $this->tallier->resultsLog['elected'] );
 	}
 }
