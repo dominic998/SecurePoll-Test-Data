@@ -56,13 +56,16 @@ class STVTallierTest extends MediaWikiUnitTestCase {
 
             $vote = explode(" ", $line);
 
-            // Remove the first and last element, which are not part of the vote, but
-            // part of the syntax of OpenSTV.
-            array_shift($vote);
+            // First element is number of votes.
+            $num = array_shift($vote);
+            // Remove the last element, which are not part of the vote, but part
+            // of the syntax of OpenSTV.
             array_pop($vote);
 
             if ( $vote[0] != "" ) {
-                $votes[] = $vote;
+                foreach ( range( 1, $num ) as $i ) {
+                    $votes[] = $vote;
+                }
             }
         }
 
