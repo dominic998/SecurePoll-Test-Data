@@ -1,4 +1,6 @@
-array (
+<?php
+
+return array (
   0 => 
   array (
     0 => 1,
@@ -20807,4 +20809,4 @@ array (
   array (
     0 => 1,
   ),
-)
+);
