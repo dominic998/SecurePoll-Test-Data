@@ -1,0 +1,58 @@
+OpenSTV version 1.6.1 (http://www.OpenSTV.org/)
+
+Suggested donation for using OpenSTV for an election is $50.  Please go to 
+http://www.OpenSTV.org/donate to donate via PayPal, Google Checkout, or
+Amazon Payments.  
+
+Certified election reports are also available.  Please go to 
+http://www.openstv.org/certified-reports for more information.
+
+Loading ballots from file 6_4_5000_6513120920.blt.
+Ballot file contains 6 candidates and 5000 ballots.
+No candidates have withdrawn.
+Ballot file contains 5000 non-empty ballots.
+
+Counting votes for ElectionTitle using Meek STV.
+6 candidates running for 4 seats.
+
+ R|1             |2             |3             |4             |5             
+  |--------------+--------------+--------------+--------------+--------------
+  |6             |Exhausted     |Surplus       |Threshold     
+=============================================================================
+ 1|   1054.000000|   1325.000000|    745.000000|    366.000000|    426.000000
+  |   1084.000000|      0.000000|    462.999997|   1000.000001
+  |--------------------------------------------------------------------------
+  | Count of first choices. Candidates 1, 2, and 6 have reached the threshold
+  | and are elected.
+=============================================================================
+ 2|   1070.686646|   1023.762741|    805.777044|    398.454035|    459.329727
+  |   1072.322009|    169.667798|    268.572073|    966.066441
+  |--------------------------------------------------------------------------
+  | Count after transferring surplus votes. Keep factors of candidates who
+  | have exceeded the threshold: 1, 0.948767; 2, 0.754717; and 6, 0.922510.
+=============================================================================
+ 3|    991.215566|    998.730528|    842.619559|    419.232967|    479.753778
+  |    992.385642|    276.061960|    147.968909|    944.787609
+  |--------------------------------------------------------------------------
+  | Count after transferring surplus votes. Keep factors of candidates who
+  | have exceeded the threshold: 1, 0.856060; 2, 0.712184; and 6, 0.831100.
+=============================================================================
+ 4|    959.685227|    958.503844|    863.050730|    430.646616|    490.976896
+  |    960.459345|    336.677342|     80.654820|    932.664532
+  |--------------------------------------------------------------------------
+  | Count after transferring surplus votes. Keep factors of candidates who
+  | have exceeded the threshold: 1, 0.815963; 2, 0.673718; and 6, 0.791238.
+=============================================================================
+ 5|    940.270286|    940.400025|    874.252870|    436.948155|    497.136429
+  |    940.604409|    370.387826|     43.507415|    925.922435
+  |--------------------------------------------------------------------------
+  | Count after transferring surplus votes. Keep factors of candidates who
+  | have exceeded the threshold: 1, 0.792989; 2, 0.655556; and 6, 0.768341.
+=============================================================================
+ 6|    994.104453|    996.365081|    929.067435|              |    524.909589
+  |    987.548619|    568.004823|    361.489444|    886.399036
+  |--------------------------------------------------------------------------
+  | Count after eliminating 4 and transferring votes. All losing candidates
+  | are eliminated. Candidate 3 has reached the threshold and is elected.
+
+Winners are 1, 2, 3, and 6.
