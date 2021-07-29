@@ -1,0 +1,81 @@
+OpenSTV version 1.6.1 (http://www.OpenSTV.org/)
+
+Suggested donation for using OpenSTV for an election is $50.  Please go to 
+http://www.OpenSTV.org/donate to donate via PayPal, Google Checkout, or
+Amazon Payments.  
+
+Certified election reports are also available.  Please go to 
+http://www.openstv.org/certified-reports for more information.
+
+Loading ballots from file 12_4_5000_6066757639.blt.
+Ballot file contains 12 candidates and 5000 ballots.
+No candidates have withdrawn.
+Ballot file contains 5000 non-empty ballots.
+
+Counting votes for ElectionTitle using Meek STV.
+12 candidates running for 4 seats.
+
+ R|1             |2             |3             |4             |5             
+  |--------------+--------------+--------------+--------------+--------------
+  |6             |7             |8             |9             |10            
+  |--------------+--------------+--------------+--------------+--------------
+  |11            |12            |Exhausted     |Surplus       |Threshold     
+=============================================================================
+ 1|    161.000000|    442.000000|    203.000000|    436.000000|    754.000000
+  |    619.000000|    207.000000|    224.000000|    618.000000|    584.000000
+  |    613.000000|    139.000000|      0.000000|      0.000000|   1000.000001
+  |--------------------------------------------------------------------------
+  | Count of first choices.
+=============================================================================
+ 2|    166.000000|    453.000000|    211.000000|    448.000000|    771.000000
+  |    643.000000|    212.000000|    228.000000|    635.000000|    601.000000
+  |    623.000000|              |      9.000000|      0.000000|    998.200001
+  |--------------------------------------------------------------------------
+  | Count after eliminating 12 and transferring votes. All losing candidates
+  | are eliminated.
+=============================================================================
+ 3|              |    463.000000|    217.000000|    460.000000|    796.000000
+  |    660.000000|    217.000000|    235.000000|    663.000000|    622.000000
+  |    644.000000|              |     23.000000|      0.000000|    995.400001
+  |--------------------------------------------------------------------------
+  | Count after eliminating 1 and transferring votes. All losing candidates
+  | are eliminated.
+=============================================================================
+ 4|              |    483.000000|              |    478.000000|    831.000000
+  |    692.000000|    227.000000|    238.000000|    691.000000|    647.000000
+  |    669.000000|              |     44.000000|      0.000000|    991.200001
+  |--------------------------------------------------------------------------
+  | Count after eliminating 3 and transferring votes. All losing candidates
+  | are eliminated. Candidates 3 and 7 were tied when choosing candidates to
+  | eliminate. Candidate 3 was chosen by breaking the tie at round 2.
+=============================================================================
+ 5|              |    528.000000|              |    519.000000|    908.000000
+  |    755.000000|              |              |    755.000000|    710.000000
+  |    738.000000|              |     87.000000|      0.000000|    982.600001
+  |--------------------------------------------------------------------------
+  | Count after eliminating 7 and 8 and transferring votes. All losing
+  | candidates are eliminated.
+=============================================================================
+ 6|              |    579.000000|              |              |   1004.000000
+  |    831.000000|              |              |    844.000000|    776.000000
+  |    826.000000|              |    140.000000|     31.999999|    972.000001
+  |--------------------------------------------------------------------------
+  | Count after eliminating 4 and transferring votes. All losing candidates
+  | are eliminated. Candidate 5 has reached the threshold and is elected.
+=============================================================================
+ 7|              |              |              |              |   1135.000000
+  |    921.000000|              |              |    943.000000|    874.000000
+  |    918.000000|              |    209.000000|    176.799999|    958.200001
+  |--------------------------------------------------------------------------
+  | Count after eliminating 2 and transferring votes. All losing candidates
+  | are eliminated.
+=============================================================================
+ 8|              |              |              |              |    958.201050
+  |    960.565580|              |              |    978.827100|    912.163650
+  |    958.032890|              |    232.209730|     41.394400|    953.558055
+  |--------------------------------------------------------------------------
+  | Count after transferring surplus votes. Keep factors of candidates who
+  | have exceeded the threshold: 5, 0.844230. Candidates 6, 9, and 11 have
+  | reached the threshold and are elected.
+
+Winners are 5, 6, 9, and 11.
