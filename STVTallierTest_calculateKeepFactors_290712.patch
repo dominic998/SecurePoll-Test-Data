@@ -1,0 +1,157 @@
+diff --git a/tests/phpunit/unit/STVTallierTest.php b/tests/phpunit/unit/STVTallierTest.php
+index 7dd3ec8..7e1d202 100644
+--- a/tests/phpunit/unit/STVTallierTest.php
++++ b/tests/phpunit/unit/STVTallierTest.php
+@@ -95,6 +95,124 @@ class STVTallierTest extends MediaWikiUnitTestCase {
+ 		];
+ 	}
+ 
++    public static function dataCalculateKeepFactors() {
++		return [
++            // [
++            //     [
++            //         1 => 1,
++            //         2 => 2,
++            //         3 => 3,
++            //         4 => 4,
++            //         5 => 5,
++            //     ],
++            //     715,
++            //     [
++            //         1 => 1,
++            //         2 => 1,
++            //         3 => 1,
++            //         4 => 1,
++            //         5 => 1,
++            //     ],
++            //     [
++            //         1
++            //     ],
++            //     [
++            //         5
++            //     ],
++            //     [
++            //         1 => ["total" => 716],
++            //         2 => ["total" => 10],
++            //         3 => ["total" => 10],
++            //         4 => ["total" => 10],
++            //         5 => ["total" => 10],
++            //     ],
++            //     [
++            //         1 => 0.99860335195530725,
++            //         2 => 1,
++            //         3 => 1,
++            //         4 => 1,
++            //         5 => 0,
++            //     ]
++            // ],
++            // [
++            //     [
++            //         1 => 1,
++            //     ],
++            //     999,
++            //     [
++            //         1 => 1,
++            //     ],
++            //     [
++            //         1
++            //     ],
++            //     [],
++            //     [
++            //         1 => ["total" => 1000],
++            //     ],
++            //     [
++            //         1 => 0.99860335195530725,
++            //     ]
++            // ],
++            // [
++            //     [
++            //         1 => 1,
++            //         2 => 2,
++            //         3 => 3,
++            //         4 => 4,
++            //         5 => 5,
++            //     ],
++            //     39,
++            //     [
++            //         1 => 1,
++            //         2 => 1,
++            //         3 => 1,
++            //         4 => 1,
++            //         5 => 1,
++            //     ],
++            //     [
++            //         1,
++            //         4,
++            //     ],
++            //     [
++            //     ],
++            //     [
++            //         1 => ["total" => 43],
++            //         2 => ["total" => 18],
++            //         3 => ["total" => 16],
++            //         4 => ["total" => 93],
++            //         5 => ["total" => 12],
++            //     ],
++            //     [
++            //         1 => 1,
++            //         2 => 1,
++            //         3 => 1,
++            //         4 => 1,
++            //         5 => 1,
++            //     ]
++            // ],
++            [
++                [
++                    1 => 1,
++                ],
++                39,
++                [
++                    1 => 1,
++                ],
++                [
++                    1,
++                ],
++                [
++                ],
++                [
++                    1 => ["total" => 93],
++                ],
++                [
++                    1 => 1,
++                ]
++            ]
++		];
++	}
++
+ 	public function testFactory() {
+ 		$this->assertInstanceOf( STVTallier::class, $this->tallier );
+ 	}
+@@ -118,7 +236,26 @@ class STVTallierTest extends MediaWikiUnitTestCase {
+ 	 */
+ 	public function testCalculateDroopQuota() {
+ 		$actual = TestingAccessWrapper::newFromObject( $this->tallier )->calculateDroopQuota( 57, 2 );
+-		$this->assertSame( 19.000001000000001, $actual );
++		$this->assertSame( 20, $actual );
++	}
++
++    /**
++	 * @dataProvider dataCalculateKeepFactors
++	 * @covers \MediaWiki\Extensions\SecurePoll\Talliers\STVTallier::calculateKeepFactors
++	 */
++	public function testCalculateKeepFactors( $candidates, $quota, $currentFactors, $winners, $eliminated, $voteTotals, $expected ) {
++        $epsilons = range( 1, 10 );
++        $x_tilde = TestingAccessWrapper::newFromObject( $this->tallier )->calculateKeepFactors( $candidates, $quota, $currentFactors, $winners, $eliminated, $voteTotals );
++        $prevKeepFactors = $currentFactors;
++        foreach ( $epsilons as $epsilon ) {
++            $actual = TestingAccessWrapper::newFromObject( $this->tallier )->calculateKeepFactors( $candidates, $quota, $prevKeepFactors, $winners, $eliminated, $voteTotals );
++            $newVote = $voteTotals[1]['total'] * $actual[1];
++            // $this->assertEquals( $quota, $newVote, $epsilon );
++            var_dump( $actual );
++            var_dump( $newVote );
++            $prevKeepFactors = $actual;
++            $voteTotals[1]['total'] = $newVote;
++        }
+ 	}
+ 
+ }
