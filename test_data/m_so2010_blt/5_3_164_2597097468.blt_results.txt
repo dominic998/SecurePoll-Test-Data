@@ -1,0 +1,66 @@
+OpenSTV version 1.6.1 (http://www.OpenSTV.org/)
+
+Suggested donation for using OpenSTV for an election is $50.  Please go to 
+http://www.OpenSTV.org/donate to donate via PayPal, Google Checkout, or
+Amazon Payments.  
+
+Certified election reports are also available.  Please go to 
+http://www.openstv.org/certified-reports for more information.
+
+Loading ballots from file 5_3_164_2597097468.blt.
+Ballot file contains 5 candidates and 164 ballots.
+No candidates have withdrawn.
+Ballot file contains 164 non-empty ballots.
+
+Counting votes for ElectionTitle using Meek STV.
+5 candidates running for 3 seats.
+
+ R|1                 |2                 |3                 |4                 
+  |------------------+------------------+------------------+------------------
+  |5                 |Exhausted         |Surplus           |Threshold         
+==============================================================================
+ 1|         30.000000|         22.000000|         18.000000|         85.000000
+  |          9.000000|          0.000000|         43.999999|         41.000001
+  |---------------------------------------------------------------------------
+  | Count of first choices. Candidate 4 has reached the threshold and is
+  | elected.
+==============================================================================
+ 2|         43.976469|         26.658823|         23.694117|         41.000005
+  |         15.211764|         13.458822|          9.705884|         37.635295
+  |---------------------------------------------------------------------------
+  | Count after transferring surplus votes. Keep factors of candidates who
+  | have exceeded the threshold: 4, 0.482353. Candidate 1 has reached the
+  | threshold and is elected.
+==============================================================================
+ 3|         38.549984|         27.721716|         24.852682|         38.593034
+  |         16.296556|         17.986028|          4.136030|         36.503494
+  |---------------------------------------------------------------------------
+  | Count after transferring surplus votes. Keep factors of candidates who
+  | have exceeded the threshold: 1, 0.855806 and 4, 0.442769.
+==============================================================================
+ 4|         42.646004|         29.950640|         28.524375|         40.870724
+  |                  |         22.008257|         12.520856|         35.497936
+  |---------------------------------------------------------------------------
+  | Count after eliminating 5 and transferring votes. All losing candidates
+  | are eliminated.
+==============================================================================
+ 5|         36.824755|         31.527468|         30.209311|         36.380609
+  |                  |         29.057857|          5.734292|         33.735536
+  |---------------------------------------------------------------------------
+  | Count after transferring surplus votes. Keep factors of candidates who
+  | have exceeded the threshold: 1, 0.712361 and 4, 0.384564.
+==============================================================================
+ 6|         34.319451|         32.276131|         31.019156|         34.076591
+  |                  |         32.308671|          2.550376|         32.922833
+  |---------------------------------------------------------------------------
+  | Count after transferring surplus votes. Keep factors of candidates who
+  | have exceeded the threshold: 1, 0.652602 and 4, 0.356605.
+==============================================================================
+ 7|         33.164718|         32.610844|         31.382587|         33.069311
+  |                  |         33.772540|          1.174275|         32.556866
+  |---------------------------------------------------------------------------
+  | Count after transferring surplus votes. Keep factors of candidates who
+  | have exceeded the threshold: 1, 0.626045 and 4, 0.344532. Candidate 2 has
+  | reached the threshold and is elected.
+
+Winners are 1, 2, and 4.
