@@ -122,3 +122,4 @@ Running them via UI
 4. Go to http://localhost:8080/wiki/Special:SecurePoll
 5. On the election called `<election name>` (whatever you called it in step 3) click "Tally"
 
+**N.B.** If UI tallying does not work, you can do it from the command line by running: `docker-compose exec mediawiki php extensions/SecurePoll/cli/tally.php --name=<election name>`.

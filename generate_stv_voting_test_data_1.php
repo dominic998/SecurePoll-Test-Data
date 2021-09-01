@@ -74,10 +74,10 @@ function createBallots( $candidates, $voteDistribution, $totalVotes ) {
 }
 
 // Names of the candidates (or some kind of identifier).
-$candidates = [1, 2, 3, 4, 5];
+$candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
 // Total number of votes for the election.
-$totalVotes = 100;
+$totalVotes = 4838;
 
 // Number of votes for each candidate for each rank/preference.
 // 
@@ -86,27 +86,26 @@ $totalVotes = 100;
 // element of randomness so the distribution might vary each time you run it.
 $voteDistribution = [
     1 => [   // First preferences
-        1 => 20,
-        2 => 20,
-        3 => 20,
-        4 => 20,
-        5 => 20
-    ],
-    2 => [   // Second preferences
-        1 => [   // Candidate 1
-            1 => 0,
-            2 => 5,
-            3 => 5,
-            4 => 5,
-            5 => 5
-        ],
-        2 => [   // Candidate 2
-            1 => 5,
-            2 => 0,
-            3 => 5,
-            4 => 5,
-            5 => 5
-        ],
+        1 => 501,
+        2 => 501,
+        3 => 501,
+        4 => 501,
+        5 => 501,
+        6 => 501,
+        7 => 501,
+        8 => 501,
+        9 => 82,
+        10 => 82,
+        11 => 82,
+        12 => 82,
+		13 => 83,
+		14 => 83,
+		15 => 2,
+		16 => 2,
+		17 => 83,
+		18 => 83,
+		19 => 83,
+		20 => 83,
     ],
 ];
 
@@ -125,7 +124,7 @@ $ballots = createBallots($candidates, $voteDistribution, $totalVotes);
 
 $random = rand();
 
-// file_put_contents(sprintf("%d_%d_%d_%d.php", count($candidates), $numSeats, $totalVotes, $random), var_export($ballots, true));
+file_put_contents(sprintf("%d_%d_%d_%d.php", count($candidates), $numSeats, $totalVotes, $random), var_export($ballots, true));
 
 $filename = sprintf("%d_%d_%d_%d.blt", count($candidates), $numSeats, $totalVotes, $random);
 
