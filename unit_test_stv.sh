@@ -1,8 +1,9 @@
 #!/bin/bash
 
 unit_test_file=extensions/SecurePoll/tests/phpunit/unit/STVTallierTest_drw.php
+helpstr="Usage: $0 [-f <ballot file>] [-d <directory] [-u]"
 
-while getopts "f:u" o
+while getopts "f:d:u" o
 do
     case "${o}" in
 	f)
@@ -11,15 +12,18 @@ do
 	u)
 	    update=1
 	    ;;
+	d)
+	    directory=${OPTARG}
+	    ;;
 	*)
-	    echo "Usage: $0 -f <ballot file> [-u]"
+	    echo $helpstr
 	    exit
 	    ;;
     esac
 done
-if [ -z $blt_file ]
+if [[ -z $blt_file && -z $directory ]]
 then
-    echo "Usage: $0 -f <ballot file> [-u]"
+    echo $helpstr
     exit
 fi
 
@@ -30,4 +34,15 @@ then
     wget -r https://raw.githubusercontent.com/dominic998/SecurePoll-Test-Data/main/STVTallierTest_drw.php -O $unit_test_file
 fi
 
-FILE=$blt_file php tests/phpunit/phpunit.php $unit_test_file
+if [[ -n $directory ]]
+then
+    for blt_file in $directory/*.blt
+    do
+	FILE=$blt_file php tests/phpunit/phpunit.php $unit_test_file
+    done
+fi
+
+if [[ -n $blt_file ]]
+then
+    FILE=$blt_file php tests/phpunit/phpunit.php $unit_test_file
+fi
