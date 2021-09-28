@@ -63,7 +63,7 @@ class STVTallierTest extends MediaWikiUnitTestCase {
             array_pop($vote);
 
             if ( $vote && $vote[0] != "" ) {
-                foreach ( range( 1, $num ) as $i ) {
+                foreach ( range( 1, (int)$num ) as $i ) {
                     $votes[] = $vote;
                 }
             }
@@ -108,10 +108,19 @@ class STVTallierTest extends MediaWikiUnitTestCase {
 
 		$this->tallier->finishTally();
         // sort( $this->tallier->resultsLog['elected'] );
-        var_dump( $this->tallier->resultsLog );
-        foreach ( $this->tallier->resultsLog['elected'] as $candidateId ) {
-            var_dump( "Elected: " . $candidatesNames[$candidateId] );
-        }
+        // var_dump( $this->tallier->resultsLog );
+        // foreach ( $this->tallier->resultsLog['elected'] as $candidateId ) {
+        //     var_dump( "Elected: " . $candidatesNames[$candidateId] );
+        // }
+
+        // $blt_file = explode( "/", getenv('FILE') );
+        // $php_file = array_pop( $blt_file );
+        // $php_file = str_replace( ".blt", ".php", $php_file );
+        // $php_file = sprintf("%s_%s.php", getenv('FILE'), date("YmdHis"));
+        $php_file = sprintf( "%s.php", getenv('FILE') );
+
+        file_put_contents( $php_file, '<?php return '.var_export( $this->tallier->resultsLog, true ).";\n" );
+
         // $this->assertEquals( $expectedElected, $this->tallier->resultsLog['elected'] );
 	}
 }
