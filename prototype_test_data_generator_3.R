@@ -50,7 +50,7 @@ optimise <- function(preferences, numStages, numCandidates, numSeats) {
     preferences$eliminated <- numCandidates + 1
 
     for (i in 1:numStages) {
-	preferences$droop <- (preferences$total - preferences$excess) / (numSeats + 1)
+	preferences$droop <- (preferences$total - preferences$excess) / (numSeats + 1) + 0.000001
 	preferences$droopdiff <- preferences$droop - (preferences[[1]] + preferences$reallocate)
 
         preferences$reallocate <- 0
@@ -76,9 +76,9 @@ optimise <- function(preferences, numStages, numCandidates, numSeats) {
     preferences
 }
 
-preferences <- expand.grid(1000:1005, 1010:1015, 410:415, 405:410, 400:405, 0, 0:2, 0:2, 0:2, 0:2)
+preferences <- expand.grid(714, 715, 195:198, 198, 198, 198, 198, 198, 198, 198, 198, 198, 198, 199, 199, 199, 199, 199, 199, 199, 0, 284:286, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
-preferences <- optimise(preferences, 5, 5, 3)
+preferences <- optimise(preferences, 5, 20, 6)
 
 ## Here is how you could order the data, selecting first preference
 ## distributions that are close to the top.
